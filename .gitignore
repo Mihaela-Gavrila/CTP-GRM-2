@@ -1,0 +1,11 @@
+# Compiled class files
+*.class
+*.log
+target/
+node_modules/  
+.env
+.idea/
+*.swp
+.DS_Store
+uploads/
+logs/

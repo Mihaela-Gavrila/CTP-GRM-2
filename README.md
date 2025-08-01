@@ -1,2 +1,1 @@
-# CTP-GRM-2
-Sistem ERP GRM 2.0 - Management Resurse Instituție
+# GRM 2.0 - Sistem ERP 
