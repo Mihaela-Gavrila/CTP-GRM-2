@@ -1,1 +1,39 @@
-version: '3.8' 
+﻿version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: grm-postgres
+    environment:
+      POSTGRES_DB: grm_db
+      POSTGRES_USER: grm_user
+      POSTGRES_PASSWORD: grm_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    container_name: grm-backend
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DB_HOST: postgres
+      DB_NAME: grm_db
+      DB_USERNAME: grm_user
+      DB_PASSWORD: grm_password
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./frontend
+    container_name: grm-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
